@@ -96,6 +96,14 @@ public class NodeResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/nodes/activity/{id}")
+    @Timed
+    public ResponseEntity<List<Node>> getAllNodesByActivityId(@PathVariable Long id) {
+        log.debug("REST request to get a page of Nodes");
+        List<Node> page = nodeService.findAllByActivityId(id);
+        return new ResponseEntity<>(page, HttpStatus.OK);
+    }
+
     /**
      * GET  /nodes/:id : get the "id" node.
      *

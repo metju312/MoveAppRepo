@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Service Implementation for managing Node.
@@ -49,6 +51,12 @@ public class NodeServiceImpl implements NodeService{
     public Page<Node> findAll(Pageable pageable) {
         log.debug("Request to get all Nodes");
         return nodeRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Node> findAllByActivityId(Long id) {
+        log.debug("Request to get all Nodes with activity id");
+        return nodeRepository.findAllByActivityId(id);
     }
 
     /**

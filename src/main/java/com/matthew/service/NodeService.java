@@ -4,6 +4,8 @@ import com.matthew.domain.Node;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * Service Interface for managing Node.
  */
@@ -24,6 +26,8 @@ public interface NodeService {
      *  @return the list of entities
      */
     Page<Node> findAll(Pageable pageable);
+
+    List<Node> findAllByActivityId(Long id);
 
     /**
      *  Get the "id" node.
