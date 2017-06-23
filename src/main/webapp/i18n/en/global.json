@@ -10,8 +10,8 @@
                 "statistics": "Statistics",
                 "activity": "Activity",
                 "node": "Node",
-                "friendship": "Friendship",
-                "friendRequest": "Friend Request",
+                "friendship": "Friends",
+                "friendRequest": "Friend Requests",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -126,5 +126,5 @@
         "emailexists": "Email is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
     },
-    "footer": "This is your footer"
+    "footer": "Wojskowa Akademia Technicza MoveApp"
 }
