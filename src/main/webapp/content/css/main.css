@@ -340,7 +340,9 @@ ui bootstrap tweaks
 footer
 ========================================================================== */
 .footer {
-    position: fixed;
-    bottom: 0;
-    background-color: #DDD;
+    /*position: fixed;*/
+    /*background-color: #DDD;*/
+    width:100%;
+    /*position:absolute;*/
+    bottom:0;
 }
