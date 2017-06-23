@@ -22,8 +22,8 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://localhost:5432/MoveApp
-        username: MoveApp
-        password:
+        username: postgres
+        password: sql
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
@@ -36,8 +36,8 @@ spring:
     mail:
         host: localhost
         port: 25
-        username:
-        password:
+        username: postgres
+        password: sql
     thymeleaf:
         cache: true
 
