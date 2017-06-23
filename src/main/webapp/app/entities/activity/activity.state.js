@@ -10,7 +10,7 @@
     function stateConfig($stateProvider) {
         $stateProvider
         .state('activity', {
-            parent: 'entity',
+            parent: 'app',
             url: '/activity?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
