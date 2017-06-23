@@ -1,0 +1,54 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "initialDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "finalDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "distance",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "steps",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "caloriesBurnt",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "averageSpeed",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "maxSpeed",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "numberOfActivities",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170623142512",
+    "entityTableName": "statistics",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}

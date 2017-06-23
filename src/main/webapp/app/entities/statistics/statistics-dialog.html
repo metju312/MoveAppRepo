@@ -1,0 +1,94 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myStatisticsLabel" data-translate="moveApp.statistics.home.createOrEditLabel">Create or edit a Statistics</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.statistics.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.statistics.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moveApp.statistics.initialDate" for="field_initialDate">Initial Date</label>
+                <div class="input-group">
+                    <input id="field_initialDate" type="text" class="form-control" name="initialDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.statistics.initialDate" is-open="vm.datePickerOpenStatus.initialDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('initialDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moveApp.statistics.finalDate" for="field_finalDate">Final Date</label>
+                <div class="input-group">
+                    <input id="field_finalDate" type="text" class="form-control" name="finalDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.statistics.finalDate" is-open="vm.datePickerOpenStatus.finalDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('finalDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moveApp.statistics.distance" for="field_distance">Distance</label>
+            <input type="number" class="form-control" name="distance" id="field_distance"
+                    ng-model="vm.statistics.distance"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moveApp.statistics.duration" for="field_duration">Duration</label>
+            <input type="number" class="form-control" name="duration" id="field_duration"
+                    ng-model="vm.statistics.duration"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moveApp.statistics.steps" for="field_steps">Steps</label>
+            <input type="number" class="form-control" name="steps" id="field_steps"
+                    ng-model="vm.statistics.steps"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moveApp.statistics.caloriesBurnt" for="field_caloriesBurnt">Calories Burnt</label>
+            <input type="number" class="form-control" name="caloriesBurnt" id="field_caloriesBurnt"
+                    ng-model="vm.statistics.caloriesBurnt"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moveApp.statistics.averageSpeed" for="field_averageSpeed">Average Speed</label>
+            <input type="number" class="form-control" name="averageSpeed" id="field_averageSpeed"
+                    ng-model="vm.statistics.averageSpeed"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moveApp.statistics.maxSpeed" for="field_maxSpeed">Max Speed</label>
+            <input type="number" class="form-control" name="maxSpeed" id="field_maxSpeed"
+                    ng-model="vm.statistics.maxSpeed"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moveApp.statistics.numberOfActivities" for="field_numberOfActivities">Number Of Activities</label>
+            <input type="number" class="form-control" name="numberOfActivities" id="field_numberOfActivities"
+                    ng-model="vm.statistics.numberOfActivities"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="moveApp.statistics.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" ng-model="vm.statistics.user" ng-options="user as user.id for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

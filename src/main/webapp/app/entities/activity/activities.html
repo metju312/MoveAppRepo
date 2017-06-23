@@ -1,0 +1,80 @@
+<div>
+    <h2 data-translate="moveApp.activity.home.title">Activities</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="activity.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="moveApp.activity.home.createLabel">
+                        Create new Activity
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="activityType"><span data-translate="moveApp.activity.activityType">Activity Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="date"><span data-translate="moveApp.activity.date">Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="distance"><span data-translate="moveApp.activity.distance">Distance</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="duration"><span data-translate="moveApp.activity.duration">Duration</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="steps"><span data-translate="moveApp.activity.steps">Steps</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="caloriesBurnt"><span data-translate="moveApp.activity.caloriesBurnt">Calories Burnt</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="averageSpeed"><span data-translate="moveApp.activity.averageSpeed">Average Speed</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="maxSpeed"><span data-translate="moveApp.activity.maxSpeed">Max Speed</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="shared"><span data-translate="moveApp.activity.shared">Shared</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.id"><span data-translate="moveApp.activity.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="activity in vm.activities track by activity.id">
+                    <td><a ui-sref="activity-detail({id:activity.id})">{{activity.id}}</a></td>
+                    <td>{{activity.activityType}}</td>
+                    <td>{{activity.date | date:'medium'}}</td>
+                    <td>{{activity.distance}}</td>
+                    <td>{{activity.duration}}</td>
+                    <td>{{activity.steps}}</td>
+                    <td>{{activity.caloriesBurnt}}</td>
+                    <td>{{activity.averageSpeed}}</td>
+                    <td>{{activity.maxSpeed}}</td>
+                    <td>{{activity.shared}}</td>
+                    <td>
+                        {{activity.user.id}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="activity-detail({id:activity.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="activity.edit({id:activity.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="activity.delete({id:activity.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

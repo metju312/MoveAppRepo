@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span data-translate="moveApp.statistics.detail.title">Statistics</span> {{vm.statistics.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="moveApp.statistics.initialDate">Initial Date</span></dt>
+        <dd>
+            <span>{{vm.statistics.initialDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.statistics.finalDate">Final Date</span></dt>
+        <dd>
+            <span>{{vm.statistics.finalDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.statistics.distance">Distance</span></dt>
+        <dd>
+            <span>{{vm.statistics.distance}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.statistics.duration">Duration</span></dt>
+        <dd>
+            <span>{{vm.statistics.duration}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.statistics.steps">Steps</span></dt>
+        <dd>
+            <span>{{vm.statistics.steps}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.statistics.caloriesBurnt">Calories Burnt</span></dt>
+        <dd>
+            <span>{{vm.statistics.caloriesBurnt}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.statistics.averageSpeed">Average Speed</span></dt>
+        <dd>
+            <span>{{vm.statistics.averageSpeed}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.statistics.maxSpeed">Max Speed</span></dt>
+        <dd>
+            <span>{{vm.statistics.maxSpeed}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.statistics.numberOfActivities">Number Of Activities</span></dt>
+        <dd>
+            <span>{{vm.statistics.numberOfActivities}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.statistics.user">User</span></dt>
+        <dd>
+            {{vm.statistics.user.id}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="statistics-detail.edit({id:vm.statistics.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

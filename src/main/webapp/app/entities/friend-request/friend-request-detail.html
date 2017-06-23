@@ -1,0 +1,27 @@
+
+<div>
+    <h2><span data-translate="moveApp.friendRequest.detail.title">Friend Request</span> {{vm.friendRequest.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="moveApp.friendRequest.user1">User 1</span></dt>
+        <dd>
+            {{vm.friendRequest.user1.id}}
+        </dd>
+        <dt><span data-translate="moveApp.friendRequest.user2">User 2</span></dt>
+        <dd>
+            {{vm.friendRequest.user2.id}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="friend-request-detail.edit({id:vm.friendRequest.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

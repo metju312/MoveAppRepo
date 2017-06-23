@@ -1,0 +1,23 @@
+{
+    "moveApp": {
+        "node" : {
+            "home": {
+                "title": "Nodes",
+                "createLabel": "Create a new Node",
+                "createOrEditLabel": "Create or edit a Node"
+            },
+            "created": "A new Node is created with identifier {{ param }}",
+            "updated": "A Node is updated with identifier {{ param }}",
+            "deleted": "A Node is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Node {{ id }}?"
+            },
+            "detail": {
+                "title": "Node"
+            },
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "activity": "Activity"
+        }
+    }
+}

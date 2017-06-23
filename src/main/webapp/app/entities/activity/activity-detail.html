@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span data-translate="moveApp.activity.detail.title">Activity</span> {{vm.activity.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="moveApp.activity.activityType">Activity Type</span></dt>
+        <dd>
+            <span>{{vm.activity.activityType}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.activity.date">Date</span></dt>
+        <dd>
+            <span>{{vm.activity.date | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.activity.distance">Distance</span></dt>
+        <dd>
+            <span>{{vm.activity.distance}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.activity.duration">Duration</span></dt>
+        <dd>
+            <span>{{vm.activity.duration}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.activity.steps">Steps</span></dt>
+        <dd>
+            <span>{{vm.activity.steps}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.activity.caloriesBurnt">Calories Burnt</span></dt>
+        <dd>
+            <span>{{vm.activity.caloriesBurnt}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.activity.averageSpeed">Average Speed</span></dt>
+        <dd>
+            <span>{{vm.activity.averageSpeed}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.activity.maxSpeed">Max Speed</span></dt>
+        <dd>
+            <span>{{vm.activity.maxSpeed}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.activity.shared">Shared</span></dt>
+        <dd>
+            <span>{{vm.activity.shared}}</span>
+        </dd>
+        <dt><span data-translate="moveApp.activity.user">User</span></dt>
+        <dd>
+            {{vm.activity.user.id}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="activity-detail.edit({id:vm.activity.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
