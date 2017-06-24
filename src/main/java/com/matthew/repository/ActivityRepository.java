@@ -1,6 +1,8 @@
 package com.matthew.repository;
 
 import com.matthew.domain.Activity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -14,6 +16,6 @@ import java.util.List;
 public interface ActivityRepository extends JpaRepository<Activity,Long> {
 
     @Query("select activity from Activity activity where activity.user.login = ?#{principal.username}")
-    List<Activity> findByUserIsCurrentUser();
-    
+    Page<Activity> findByUserIsCurrentUser(Pageable pageable);
+
 }

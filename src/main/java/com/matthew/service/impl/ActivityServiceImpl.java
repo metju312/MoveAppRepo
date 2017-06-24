@@ -48,7 +48,7 @@ public class ActivityServiceImpl implements ActivityService{
     @Transactional(readOnly = true)
     public Page<Activity> findAll(Pageable pageable) {
         log.debug("Request to get all Activities");
-        return activityRepository.findAll(pageable);
+        return activityRepository.findByUserIsCurrentUser(pageable);
     }
 
     /**
