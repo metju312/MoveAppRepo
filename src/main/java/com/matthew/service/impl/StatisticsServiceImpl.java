@@ -48,7 +48,7 @@ public class StatisticsServiceImpl implements StatisticsService{
     @Transactional(readOnly = true)
     public Page<Statistics> findAll(Pageable pageable) {
         log.debug("Request to get all Statistics");
-        return statisticsRepository.findAll(pageable);
+        return statisticsRepository.findByUserIsCurrentUser(pageable);
     }
 
     /**

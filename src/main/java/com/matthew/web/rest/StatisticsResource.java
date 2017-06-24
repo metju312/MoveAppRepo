@@ -2,7 +2,9 @@ package com.matthew.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.matthew.domain.Statistics;
+import com.matthew.security.SecurityUtils;
 import com.matthew.service.StatisticsService;
+import com.matthew.service.UserService;
 import com.matthew.web.rest.util.HeaderUtil;
 import com.matthew.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -35,8 +37,11 @@ public class StatisticsResource {
 
     private final StatisticsService statisticsService;
 
-    public StatisticsResource(StatisticsService statisticsService) {
+    private final UserService userService;
+
+    public StatisticsResource(StatisticsService statisticsService, UserService userService) {
         this.statisticsService = statisticsService;
+        this.userService = userService;
     }
 
     /**
@@ -53,6 +58,7 @@ public class StatisticsResource {
         if (statistics.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new statistics cannot already have an ID")).body(null);
         }
+        statistics.setUser(userService.findOneByLogin(SecurityUtils.getCurrentUserLogin()));
         Statistics result = statisticsService.save(statistics);
         return ResponseEntity.created(new URI("/api/statistics/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

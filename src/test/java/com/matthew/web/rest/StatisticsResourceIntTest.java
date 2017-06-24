@@ -5,6 +5,7 @@ import com.matthew.MoveApp;
 import com.matthew.domain.Statistics;
 import com.matthew.repository.StatisticsRepository;
 import com.matthew.service.StatisticsService;
+import com.matthew.service.UserService;
 import com.matthew.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -74,6 +75,9 @@ public class StatisticsResourceIntTest {
     private StatisticsService statisticsService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -92,7 +96,7 @@ public class StatisticsResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        StatisticsResource statisticsResource = new StatisticsResource(statisticsService);
+        StatisticsResource statisticsResource = new StatisticsResource(statisticsService, userService);
         this.restStatisticsMockMvc = MockMvcBuilders.standaloneSetup(statisticsResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
