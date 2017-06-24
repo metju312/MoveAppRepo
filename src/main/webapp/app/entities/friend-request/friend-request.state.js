@@ -10,7 +10,7 @@
     function stateConfig($stateProvider) {
         $stateProvider
         .state('friend-request', {
-            parent: 'entity',
+            parent: 'friends',
             url: '/friend-request',
             data: {
                 authorities: ['ROLE_USER'],

@@ -5,9 +5,9 @@
         .module('moveApp')
         .controller('ActivityController', ActivityController);
 
-    ActivityController.$inject = ['$state', 'Activity', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    ActivityController.$inject = ['$state', 'Activity', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams', 'Principal'];
 
-    function ActivityController($state, Activity, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function ActivityController($state, Activity, ParseLinks, AlertService, paginationConstants, pagingParams, Principal) {
 
         var vm = this;
 
@@ -16,6 +16,11 @@
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
+
+        Principal.identity().then(function(account) {
+            vm.account = account;
+        });
+
 
         loadAll();
 

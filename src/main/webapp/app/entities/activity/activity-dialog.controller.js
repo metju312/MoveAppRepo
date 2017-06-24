@@ -5,9 +5,9 @@
         .module('moveApp')
         .controller('ActivityDialogController', ActivityDialogController);
 
-    ActivityDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Activity', 'Node', 'User'];
+    ActivityDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Activity', 'Node', 'User','Principal'];
 
-    function ActivityDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Activity, Node, User) {
+    function ActivityDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Activity, Node, User, Principal) {
         var vm = this;
 
         vm.activity = entity;
@@ -17,6 +17,10 @@
         vm.save = save;
         vm.nodes = Node.query();
         vm.users = User.query();
+
+        // Principal.identity().then(function(account) {
+        //     vm.account = account;
+        // });
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -28,6 +32,7 @@
 
         function save () {
             vm.isSaving = true;
+            // vm.activity.user.id = vm.account.id;
             if (vm.activity.id !== null) {
                 Activity.update(vm.activity, onSaveSuccess, onSaveError);
             } else {
