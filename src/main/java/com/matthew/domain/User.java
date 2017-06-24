@@ -55,6 +55,16 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(length = 100, unique = true)
     private String email;
 
+    @Size(max = 1)
+    @Column(name = "sex",length = 1)
+    private String sex;
+
+    @Column(name = "weight")
+    private Integer weight;
+
+    @Column(name = "height")
+    private Integer height;
+
     @NotNull
     @Column(nullable = false)
     private boolean activated = false;
@@ -203,6 +213,30 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setPersistentTokens(Set<PersistentToken> persistentTokens) {
         this.persistentTokens = persistentTokens;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
     }
 
     @Override

@@ -35,6 +35,13 @@ public class UserDTO {
     @Size(min = 5, max = 100)
     private String email;
 
+    @Size(max = 1)
+    private String sex;
+
+    private Integer weight;
+
+    private Integer height;
+
     @Size(max = 256)
     private String imageUrl;
 
@@ -59,14 +66,14 @@ public class UserDTO {
 
     public UserDTO(User user) {
         this(user.getId(), user.getLogin(), user.getFirstName(), user.getLastName(),
-            user.getEmail(), user.getActivated(), user.getImageUrl(), user.getLangKey(),
+            user.getEmail(), user.getSex(), user.getWeight(), user.getHeight(), user.getActivated(), user.getImageUrl(), user.getLangKey(),
             user.getCreatedBy(), user.getCreatedDate(), user.getLastModifiedBy(), user.getLastModifiedDate(),
             user.getAuthorities().stream().map(Authority::getName)
                 .collect(Collectors.toSet()));
     }
 
     public UserDTO(Long id, String login, String firstName, String lastName,
-        String email, boolean activated, String imageUrl, String langKey,
+        String email, String sex, Integer weight, Integer height ,boolean activated, String imageUrl, String langKey,
         String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate,
         Set<String> authorities) {
 
@@ -75,6 +82,9 @@ public class UserDTO {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.sex = sex;
+        this.weight = weight;
+        this.height = height;
         this.activated = activated;
         this.imageUrl = imageUrl;
         this.langKey = langKey;
@@ -149,6 +159,30 @@ public class UserDTO {
         return authorities;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
@@ -166,4 +200,6 @@ public class UserDTO {
             ", authorities=" + authorities +
             "}";
     }
+
+
 }

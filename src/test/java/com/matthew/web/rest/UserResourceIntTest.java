@@ -61,6 +61,15 @@ public class UserResourceIntTest {
     private static final String DEFAULT_EMAIL = "johndoe@localhost";
     private static final String UPDATED_EMAIL = "jhipster@localhost";
 
+    private static final String DEFAULT_SEX = "m";
+    private static final String UPDATED_SEX = "k";
+
+    private static final Integer DEFAULT_WEIGHT = 82;
+    private static final Integer UPDATED_WEIGHT = 92;
+
+    private static final Integer DEFAULT_HEIGHT = 182;
+    private static final Integer UPDATED_HEIGHT = 192;
+
     private static final String DEFAULT_FIRSTNAME = "john";
     private static final String UPDATED_FIRSTNAME = "jhipsterFirstName";
 
@@ -151,6 +160,9 @@ public class UserResourceIntTest {
             DEFAULT_FIRSTNAME,
             DEFAULT_LASTNAME,
             DEFAULT_EMAIL,
+            DEFAULT_SEX,
+            DEFAULT_WEIGHT,
+            DEFAULT_HEIGHT,
             true,
             DEFAULT_IMAGEURL,
             DEFAULT_LANGKEY,
@@ -191,6 +203,9 @@ public class UserResourceIntTest {
             DEFAULT_FIRSTNAME,
             DEFAULT_LASTNAME,
             DEFAULT_EMAIL,
+            DEFAULT_SEX,
+            DEFAULT_WEIGHT,
+            DEFAULT_HEIGHT,
             true,
             DEFAULT_IMAGEURL,
             DEFAULT_LANGKEY,
@@ -227,6 +242,9 @@ public class UserResourceIntTest {
             DEFAULT_FIRSTNAME,
             DEFAULT_LASTNAME,
             "anothermail@localhost",
+            DEFAULT_SEX,
+            DEFAULT_WEIGHT,
+            DEFAULT_HEIGHT,
             true,
             DEFAULT_IMAGEURL,
             DEFAULT_LANGKEY,
@@ -263,6 +281,9 @@ public class UserResourceIntTest {
             DEFAULT_FIRSTNAME,
             DEFAULT_LASTNAME,
             DEFAULT_EMAIL, // this email should already be used
+            DEFAULT_SEX,
+            DEFAULT_WEIGHT,
+            DEFAULT_HEIGHT,
             true,
             DEFAULT_IMAGEURL,
             DEFAULT_LANGKEY,
@@ -346,6 +367,9 @@ public class UserResourceIntTest {
             UPDATED_FIRSTNAME,
             UPDATED_LASTNAME,
             UPDATED_EMAIL,
+            DEFAULT_SEX,
+            DEFAULT_WEIGHT,
+            DEFAULT_HEIGHT,
             updatedUser.getActivated(),
             UPDATED_IMAGEURL,
             UPDATED_LANGKEY,
@@ -390,6 +414,9 @@ public class UserResourceIntTest {
             UPDATED_FIRSTNAME,
             UPDATED_LASTNAME,
             UPDATED_EMAIL,
+            DEFAULT_SEX,
+            DEFAULT_WEIGHT,
+            DEFAULT_HEIGHT,
             updatedUser.getActivated(),
             UPDATED_IMAGEURL,
             UPDATED_LANGKEY,
@@ -445,6 +472,9 @@ public class UserResourceIntTest {
             updatedUser.getFirstName(),
             updatedUser.getLastName(),
             "jhipster@localhost",  // this email should already be used by anotherUser
+            updatedUser.getSex(),
+            updatedUser.getWeight(),
+            updatedUser.getHeight(),
             updatedUser.getActivated(),
             updatedUser.getImageUrl(),
             updatedUser.getLangKey(),
@@ -489,6 +519,9 @@ public class UserResourceIntTest {
             updatedUser.getFirstName(),
             updatedUser.getLastName(),
             updatedUser.getEmail(),
+            updatedUser.getSex(),
+            updatedUser.getWeight(),
+            updatedUser.getHeight(),
             updatedUser.getActivated(),
             updatedUser.getImageUrl(),
             updatedUser.getLangKey(),
@@ -566,6 +599,9 @@ public class UserResourceIntTest {
             DEFAULT_FIRSTNAME,
             DEFAULT_LASTNAME,
             DEFAULT_EMAIL,
+            DEFAULT_SEX,
+            DEFAULT_WEIGHT,
+            DEFAULT_HEIGHT,
             true,
             DEFAULT_IMAGEURL,
             DEFAULT_LANGKEY,

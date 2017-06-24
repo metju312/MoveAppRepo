@@ -167,6 +167,9 @@ public class AccountResourceIntTest {
             "Joe",                  // firstName
             "Shmoe",                // lastName
             "joe@example.com",      // email
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
@@ -196,6 +199,9 @@ public class AccountResourceIntTest {
             "Funky",                // firstName
             "One",                  // lastName
             "funky@example.com",    // email
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
@@ -225,6 +231,9 @@ public class AccountResourceIntTest {
             "Bob",              // firstName
             "Green",            // lastName
             "invalid",          // email <-- invalid
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             true,               // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
@@ -254,6 +263,9 @@ public class AccountResourceIntTest {
             "Bob",              // firstName
             "Green",            // lastName
             "bob@example.com",  // email
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             true,               // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
@@ -283,6 +295,9 @@ public class AccountResourceIntTest {
             "Bob",              // firstName
             "Green",            // lastName
             "bob@example.com",  // email
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             true,               // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
@@ -313,6 +328,9 @@ public class AccountResourceIntTest {
             "Alice",                // firstName
             "Something",            // lastName
             "alice@example.com",    // email
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
@@ -324,7 +342,7 @@ public class AccountResourceIntTest {
 
         // Duplicate login, different email
         ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), validUser.getLogin(), validUser.getPassword(), validUser.getFirstName(), validUser.getLastName(),
-            "alicejr@example.com", true, validUser.getImageUrl(), validUser.getLangKey(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(), validUser.getAuthorities());
+            "alicejr@example.com", validUser.getSex(), validUser.getWeight(), validUser.getHeight(),true, validUser.getImageUrl(), validUser.getLangKey(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(), validUser.getAuthorities());
 
         // Good user
         restMvc.perform(
@@ -355,6 +373,9 @@ public class AccountResourceIntTest {
             "John",                 // firstName
             "Doe",                  // lastName
             "john@example.com",     // email
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
@@ -366,7 +387,7 @@ public class AccountResourceIntTest {
 
         // Duplicate email, different login
         ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
-            validUser.getEmail(), true, validUser.getImageUrl(), validUser.getLangKey(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(), validUser.getAuthorities());
+            validUser.getEmail(), validUser.getSex(), validUser.getWeight(), validUser.getHeight(),true, validUser.getImageUrl(), validUser.getLangKey(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(), validUser.getAuthorities());
 
         // Good user
         restMvc.perform(
@@ -396,6 +417,9 @@ public class AccountResourceIntTest {
             "Bad",                  // firstName
             "Guy",                  // lastName
             "badguy@example.com",   // email
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
@@ -462,6 +486,9 @@ public class AccountResourceIntTest {
             "firstname",                // firstName
             "lastname",                  // lastName
             "save-account@example.com",    // email
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             false,                   // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
@@ -507,6 +534,9 @@ public class AccountResourceIntTest {
             "firstname",                // firstName
             "lastname",                  // lastName
             "invalid email",    // email
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             false,                   // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
@@ -552,6 +582,9 @@ public class AccountResourceIntTest {
             "firstname",                // firstName
             "lastname",                  // lastName
             "save-existing-email2@example.com",    // email
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             false,                   // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
@@ -590,6 +623,9 @@ public class AccountResourceIntTest {
             "firstname",                // firstName
             "lastname",                  // lastName
             "save-existing-email-and-login@example.com",    // email
+            "m",                    // sex
+            182,                    // weight
+            82,                     // height
             false,                   // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
