@@ -1,8 +1,10 @@
 package com.matthew.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.matthew.domain.Activity;
 import com.matthew.domain.Statistics;
 import com.matthew.security.SecurityUtils;
+import com.matthew.service.ActivityService;
 import com.matthew.service.StatisticsService;
 import com.matthew.service.UserService;
 import com.matthew.web.rest.util.HeaderUtil;
@@ -21,6 +23,10 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,9 +45,12 @@ public class StatisticsResource {
 
     private final UserService userService;
 
-    public StatisticsResource(StatisticsService statisticsService, UserService userService) {
+    private final ActivityService activityService;
+
+    public StatisticsResource(StatisticsService statisticsService, UserService userService, ActivityService activityService) {
         this.statisticsService = statisticsService;
         this.userService = userService;
+        this.activityService = activityService;
     }
 
     /**
@@ -59,11 +68,70 @@ public class StatisticsResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new statistics cannot already have an ID")).body(null);
         }
         statistics.setUser(userService.findOneByLogin(SecurityUtils.getCurrentUserLogin()));
+        List<Activity> activities = activityService.findAllDateBetween(statistics.getInitialDate(), statistics.getFinalDate());
+        activities = activitiesDateBetween(activities, statistics.getInitialDate(), statistics.getFinalDate());
+        statistics = sumStatistics(statistics, activities);
         Statistics result = statisticsService.save(statistics);
         return ResponseEntity.created(new URI("/api/statistics/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
+
+    private List<Activity> activitiesDateBetween(List<Activity> activities, LocalDate initialDate, LocalDate finalDate) {
+        List<Activity> activitiesFiltered = new ArrayList<>();
+        for (Activity activity: activities) {
+            if(activity.getDate().isBefore(finalDate.atStartOfDay().toInstant(ZoneOffset.UTC))){
+                if(activity.getDate().isAfter(initialDate.atStartOfDay().toInstant(ZoneOffset.UTC))){
+                    activitiesFiltered.add(activity);
+                }
+            }
+        }
+        return activitiesFiltered;
+    }
+
+    private Statistics sumStatistics(Statistics statistics, List<Activity> activities) {
+        Float distance = 0f;
+        Integer duration = 0;
+        Integer steps = 0;
+        Float caloriesBurnt = 0f;
+        Float averageSpeed = 0f;
+        Integer averageSpeedCount = 0;
+        Float maxSpeed = 0f;
+        Integer numberOfActivities = 0;
+        for (Activity activity : activities) {
+            if(activity.getDistance() != null){
+                distance+=activity.getDistance();
+            }
+            if(activity.getDuration() != null){
+                duration+=activity.getDuration();
+            }
+            if(activity.getSteps() != null){
+                steps+=activity.getSteps();
+            }
+            if(activity.getCaloriesBurnt() != null){
+                caloriesBurnt+=activity.getCaloriesBurnt();
+            }
+            if(activity.getAverageSpeed() != null){
+                averageSpeedCount++;
+                averageSpeed+=activity.getAverageSpeed();
+            }
+            if(activity.getMaxSpeed() != null){
+                if(activity.getMaxSpeed() > maxSpeed){
+                    maxSpeed = activity.getMaxSpeed();
+                }
+            }
+            numberOfActivities++;
+        }
+        statistics.setDistance(distance);
+        statistics.setDuration(duration);
+        statistics.setSteps(steps);
+        statistics.setCaloriesBurnt(caloriesBurnt);
+        statistics.setAverageSpeed(averageSpeed/averageSpeedCount);
+        statistics.setMaxSpeed(maxSpeed);
+        statistics.setNumberOfActivities(numberOfActivities);
+        return statistics;
+    }
+
 
     /**
      * PUT  /statistics : Updates an existing statistics.

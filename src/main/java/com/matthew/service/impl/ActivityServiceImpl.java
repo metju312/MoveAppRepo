@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.List;
+
 
 /**
  * Service Implementation for managing Activity.
@@ -73,5 +76,11 @@ public class ActivityServiceImpl implements ActivityService{
     public void delete(Long id) {
         log.debug("Request to delete Activity : {}", id);
         activityRepository.delete(id);
+    }
+
+    @Override
+    public List<Activity> findAllDateBetween(LocalDate fromDate, LocalDate toDate) {
+        log.debug("Request to get all Activities between dates");
+        return activityRepository.findByUserIsCurrentUserDateBetween(fromDate,toDate);
     }
 }

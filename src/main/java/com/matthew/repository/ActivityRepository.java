@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
+
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -16,6 +18,10 @@ import java.util.List;
 public interface ActivityRepository extends JpaRepository<Activity,Long> {
 
     @Query("select activity from Activity activity where activity.user.login = ?#{principal.username}")
-    Page<Activity> findByUserIsCurrentUser(Pageable pageable);
+    Page<Activity> findByUserIsCurrentUser(Pageable pageable)
+        ;
+    @Query("select activity from Activity activity where activity.user.login = ?#{principal.username}")
+    List<Activity> findByUserIsCurrentUserDateBetween(LocalDate fromDate, LocalDate toDate);
 
+    //List<Activity> findAllDateBetween(LocalDate fromDate, LocalDate toDate);
 }
