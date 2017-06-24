@@ -18,35 +18,35 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>-->
                     <th jh-sort-by="initialDate"><span data-translate="moveApp.statistics.initialDate">Initial Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="finalDate"><span data-translate="moveApp.statistics.finalDate">Final Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="distance"><span data-translate="moveApp.statistics.distance">Distance</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="duration"><span data-translate="moveApp.statistics.duration">Duration</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="steps"><span data-translate="moveApp.statistics.steps">Steps</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="caloriesBurnt"><span data-translate="moveApp.statistics.caloriesBurnt">Calories Burnt</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="averageSpeed"><span data-translate="moveApp.statistics.averageSpeed">Average Speed</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="maxSpeed"><span data-translate="moveApp.statistics.maxSpeed">Max Speed</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="numberOfActivities"><span data-translate="moveApp.statistics.numberOfActivities">Number Of Activities</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="user.id"><span data-translate="moveApp.statistics.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="steps"><span data-translate="moveApp.statistics.steps">Steps</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="caloriesBurnt"><span data-translate="moveApp.statistics.caloriesBurnt">Calories Burnt</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="averageSpeed"><span data-translate="moveApp.statistics.averageSpeed">Average Speed</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="maxSpeed"><span data-translate="moveApp.statistics.maxSpeed">Max Speed</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="numberOfActivities"><span data-translate="moveApp.statistics.numberOfActivities">Number Of Activities</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="user.id"><span data-translate="moveApp.statistics.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>-->
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="statistics in vm.statistics track by statistics.id">
-                    <td><a ui-sref="statistics-detail({id:statistics.id})">{{statistics.id}}</a></td>
+                    <!--<td><a ui-sref="statistics-detail({id:statistics.id})">{{statistics.id}}</a></td>-->
                         <td>{{statistics.initialDate | date:'mediumDate'}}</td>
                         <td>{{statistics.finalDate | date:'mediumDate'}}</td>
                     <td>{{statistics.distance}}</td>
                     <td>{{statistics.duration}}</td>
-                    <td>{{statistics.steps}}</td>
-                    <td>{{statistics.caloriesBurnt}}</td>
-                    <td>{{statistics.averageSpeed}}</td>
-                    <td>{{statistics.maxSpeed}}</td>
-                    <td>{{statistics.numberOfActivities}}</td>
-                    <td>
-                        {{statistics.user.id}}
-                    </td>
+                    <!--<td>{{statistics.steps}}</td>-->
+                    <!--<td>{{statistics.caloriesBurnt}}</td>-->
+                    <!--<td>{{statistics.averageSpeed}}</td>-->
+                    <!--<td>{{statistics.maxSpeed}}</td>-->
+                    <!--<td>{{statistics.numberOfActivities}}</td>-->
+                    <!--<td>-->
+                        <!--{{statistics.user.id}}-->
+                    <!--</td>-->
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
