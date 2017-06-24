@@ -1,11 +1,9 @@
 
 <div>
-    <h2><span data-translate="moveApp.activity.detail.title">Activity</span> {{vm.activity.id}}</h2>
+    <h2><span data-translate="moveApp.activity.detail.title">Activity</span> :{{vm.activity.date | date:'medium'}}</h2>
+
     <hr>
-
     <div id="map"></div>
-
-
     <hr>
 
     <jhi-alert-error></jhi-alert-error>
@@ -14,10 +12,10 @@
         <dd>
             <span>{{vm.activity.activityType}}</span>
         </dd>
-        <dt><span data-translate="moveApp.activity.date">Date</span></dt>
-        <dd>
-            <span>{{vm.activity.date | date:'medium'}}</span>
-        </dd>
+        <!--<dt><span data-translate="moveApp.activity.date">Date</span></dt>-->
+        <!--<dd>-->
+            <!--<span>{{vm.activity.date | date:'medium'}}</span>-->
+        <!--</dd>-->
         <dt><span data-translate="moveApp.activity.distance">Distance</span></dt>
         <dd>
             <span>{{vm.activity.distance}}</span>

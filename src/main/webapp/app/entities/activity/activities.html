@@ -30,7 +30,7 @@
                     <th jh-sort-by="averageSpeed"><span data-translate="moveApp.activity.averageSpeed">Average Speed</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <!--<th jh-sort-by="maxSpeed"><span data-translate="moveApp.activity.maxSpeed">Max Speed</span> <span class="glyphicon glyphicon-sort"></span></th>-->
                     <!--<th jh-sort-by="shared"><span data-translate="moveApp.activity.shared">Shared</span> <span class="glyphicon glyphicon-sort"></span></th>-->
-                    <!--<th jh-sort-by="user.id"><span data-translate="moveApp.activity.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <th jh-sort-by="user.id"><span data-translate="moveApp.activity.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -46,9 +46,9 @@
                     <td>{{activity.averageSpeed}}</td>
                     <!--<td>{{activity.maxSpeed}}</td>-->
                     <!--<td>{{activity.shared}}</td>-->
-                    <!--<td>-->
-                        <!--{{activity.user.id}}-->
-                    <!--</td>-->
+                    <td>
+                        {{activity.user.id}}
+                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
