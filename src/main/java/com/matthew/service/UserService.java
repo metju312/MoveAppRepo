@@ -262,4 +262,13 @@ public class UserService {
     public List<String> getAuthorities() {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public User findOneByLogin(String currentUserLogin) {
+        Optional<User> optional = userRepository.findOneByLogin(currentUserLogin);
+        if(optional.isPresent()){
+            return optional.get();
+        }
+        return null;
+    }
 }

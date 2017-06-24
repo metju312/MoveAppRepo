@@ -5,6 +5,7 @@ import com.matthew.MoveApp;
 import com.matthew.domain.Activity;
 import com.matthew.repository.ActivityRepository;
 import com.matthew.service.ActivityService;
+import com.matthew.service.UserService;
 import com.matthew.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -74,6 +75,9 @@ public class ActivityResourceIntTest {
     private ActivityService activityService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -92,7 +96,7 @@ public class ActivityResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        ActivityResource activityResource = new ActivityResource(activityService);
+        ActivityResource activityResource = new ActivityResource(activityService, userService);
         this.restActivityMockMvc = MockMvcBuilders.standaloneSetup(activityResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

@@ -2,7 +2,9 @@ package com.matthew.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.matthew.domain.Activity;
+import com.matthew.security.SecurityUtils;
 import com.matthew.service.ActivityService;
+import com.matthew.service.UserService;
 import com.matthew.web.rest.util.HeaderUtil;
 import com.matthew.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -36,8 +38,11 @@ public class ActivityResource {
 
     private final ActivityService activityService;
 
-    public ActivityResource(ActivityService activityService) {
+    private final UserService userService;
+
+    public ActivityResource(ActivityService activityService, UserService userService) {
         this.activityService = activityService;
+        this.userService = userService;
     }
 
     /**
@@ -54,6 +59,7 @@ public class ActivityResource {
         if (activity.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new activity cannot already have an ID")).body(null);
         }
+        activity.setUser(userService.findOneByLogin(SecurityUtils.getCurrentUserLogin()));
         Activity result = activityService.save(activity);
         return ResponseEntity.created(new URI("/api/activities/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
