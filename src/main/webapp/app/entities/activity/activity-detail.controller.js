@@ -33,7 +33,7 @@
                 var myLatLng = null;
                 var sumX = 0;
                 var sumY = 0;
-                if (length == 1) {
+                if (length == 0) {
                     myLatLng = {lat: 52.252778, lng: 20.899918};/*wat*/
                 } else {
                     var node = null;

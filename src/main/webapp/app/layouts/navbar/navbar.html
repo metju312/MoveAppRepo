@@ -22,14 +22,14 @@
                     </a>
                 </li>
                 <!--activity-->
-                <li ui-sref-active="active">
+                <li ui-sref-active="active" ng-switch-when="true">
                     <a ui-sref="activity" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-sunglasses"></span>
                         <span class="hidden-sm" data-translate="global.menu.entities.activity">Activities</span>
                     </a>
                 </li>
                 <!--statistics-->
-                <li ui-sref-active="active">
+                <li ui-sref-active="active" ng-switch-when="true">
                     <a ui-sref="statistics" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-stats"></span>
                         <span class="hidden-sm" data-translate="global.menu.entities.statistics">Statistics</span>
@@ -69,7 +69,7 @@
 
 
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-                <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown class="dropdown pointer">
+                <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" has-authority="ROLE_ADMIN" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>

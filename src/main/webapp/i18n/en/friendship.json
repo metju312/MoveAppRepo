@@ -6,11 +6,11 @@
                 "createLabel": "Create a new Friendship",
                 "createOrEditLabel": "Create or edit a Friendship"
             },
-            "created": "A new Friendship is created with identifier {{ param }}",
-            "updated": "A Friendship is updated with identifier {{ param }}",
-            "deleted": "A Friendship is deleted with identifier {{ param }}",
+            "created": "A new Friendship is created",
+            "updated": "A Friendship is updated",
+            "deleted": "A Friendship is deleted",
             "delete": {
-                "question": "Are you sure you want to delete Friendship {{ id }}?"
+                "question": "Are you sure you want to delete Friendship?"
             },
             "detail": {
                 "title": "Friendship"

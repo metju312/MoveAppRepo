@@ -6,11 +6,11 @@
                 "createLabel": "Create a new Friend Request",
                 "createOrEditLabel": "Create or edit a Friend Request"
             },
-            "created": "A new Friend Request is created with identifier {{ param }}",
-            "updated": "A Friend Request is updated with identifier {{ param }}",
-            "deleted": "A Friend Request is deleted with identifier {{ param }}",
+            "created": "A new Friend Request is created",
+            "updated": "A Friend Request is updated",
+            "deleted": "A Friend Request is deleted",
             "delete": {
-                "question": "Are you sure you want to delete Friend Request {{ id }}?"
+                "question": "Are you sure you want to delete Friend Request?"
             },
             "detail": {
                 "title": "Friend Request"

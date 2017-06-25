@@ -6,11 +6,11 @@
                 "createLabel": "Create a new Activity",
                 "createOrEditLabel": "Create or edit a Activity"
             },
-            "created": "A new Activity is created with identifier {{ param }}",
-            "updated": "A Activity is updated with identifier {{ param }}",
-            "deleted": "A Activity is deleted with identifier {{ param }}",
+            "created": "A new Activity is created",
+            "updated": "A Activity is updated",
+            "deleted": "A Activity is deleted",
             "delete": {
-                "question": "Are you sure you want to delete Activity {{ id }}?"
+                "question": "Are you sure you want to delete this Activity?"
             },
             "detail": {
                 "title": "Activity"

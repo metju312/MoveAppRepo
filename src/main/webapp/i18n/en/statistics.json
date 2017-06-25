@@ -6,11 +6,11 @@
                 "createLabel": "Create a new Statistics",
                 "createOrEditLabel": "Create or edit a Statistics"
             },
-            "created": "A new Statistics is created with identifier {{ param }}",
-            "updated": "A Statistics is updated with identifier {{ param }}",
-            "deleted": "A Statistics is deleted with identifier {{ param }}",
+            "created": "A new Statistics is created",
+            "updated": "A Statistics is updated",
+            "deleted": "A Statistics is deleted",
             "delete": {
-                "question": "Are you sure you want to delete Statistics {{ id }}?"
+                "question": "Are you sure you want to delete Statistics?"
             },
             "detail": {
                 "title": "Statistics"
