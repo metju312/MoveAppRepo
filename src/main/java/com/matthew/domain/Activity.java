@@ -52,8 +52,7 @@ public class Activity implements Serializable {
     @Column(name = "jhi_shared")
     private Integer shared;
 
-    @OneToMany(mappedBy = "activity")
-    @JsonIgnore
+    @OneToMany(mappedBy = "activity", fetch = FetchType.EAGER)
     private Set<Node> nodes = new HashSet<>();
 
     @ManyToOne

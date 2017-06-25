@@ -1,6 +1,8 @@
 package com.matthew.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,6 +28,7 @@ public class Node implements Serializable {
     private Float longitude;
 
     @ManyToOne
+    @JsonIgnore
     private Activity activity;
 
     public Long getId() {
