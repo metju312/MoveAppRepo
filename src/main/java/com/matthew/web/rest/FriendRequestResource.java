@@ -2,6 +2,7 @@ package com.matthew.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.matthew.domain.FriendRequest;
+import com.matthew.domain.Friendship;
 import com.matthew.domain.User;
 import com.matthew.security.SecurityUtils;
 import com.matthew.service.FriendRequestService;
@@ -62,8 +63,8 @@ public class FriendRequestResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "User: " + login + " doesn't exists")).body(null);
         }
 
-        friendRequest.setUser1(userService.findOneByLogin(SecurityUtils.getCurrentUserLogin()));
-        friendRequest.setUser2(user);
+        friendRequest.setUser1(user);
+        friendRequest.setUser2(userService.findOneByLogin(SecurityUtils.getCurrentUserLogin()));
         FriendRequest result = friendRequestService.save(friendRequest);
         return ResponseEntity.created(new URI("/api/friend-requests/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -124,14 +125,16 @@ public class FriendRequestResource {
     /**
      * DELETE  /friend-requests/:id : delete the "id" friendRequest.
      *
-     * @param id the id of the friendRequest to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/friend-requests/{id}")
+    @DeleteMapping("/friend-requests/{login}")
     @Timed
-    public ResponseEntity<Void> deleteFriendRequest(@PathVariable Long id) {
-        log.debug("REST request to delete FriendRequest : {}", id);
-        friendRequestService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    public ResponseEntity<Void> deleteFriendRequest(@PathVariable String login) {
+        log.debug("REST request to delete FriendRequest with user1 login" + login);
+        User user1 = userService.findOneByLogin(login);
+        User user2 = userService.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        FriendRequest friendRequest = friendRequestService.findByUser1AndUser2(user1, user2);
+        friendRequestService.delete(friendRequest.getId());
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, "")).build();
     }
 }

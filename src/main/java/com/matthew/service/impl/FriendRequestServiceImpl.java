@@ -1,5 +1,6 @@
 package com.matthew.service.impl;
 
+import com.matthew.domain.User;
 import com.matthew.service.FriendRequestService;
 import com.matthew.domain.FriendRequest;
 import com.matthew.repository.FriendRequestRepository;
@@ -9,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 /**
@@ -73,5 +76,23 @@ public class FriendRequestServiceImpl implements FriendRequestService{
     public void delete(Long id) {
         log.debug("Request to delete FriendRequest : {}", id);
         friendRequestRepository.delete(id);
+    }
+
+    @Override
+    public FriendRequest findByUser1AndUser2(User user1, User user2) {
+        log.debug("Request to findByUser1AndUser2");
+        List<FriendRequest> friendRequests = friendRequestRepository.findAll();
+        for (FriendRequest friendRequest : friendRequests) {
+            if(friendRequest.getUser1().getLogin().equals(user1.getLogin())){
+                if(friendRequest.getUser2().getLogin().equals(user2.getLogin())){
+                    return friendRequest;
+                }
+            }else if (friendRequest.getUser1().getLogin().equals(user2.getLogin())){
+                if(friendRequest.getUser2().getLogin().equals(user1.getLogin())){
+                    return friendRequest;
+                }
+            }
+        }
+        return null;
     }
 }

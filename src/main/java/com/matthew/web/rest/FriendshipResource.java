@@ -59,8 +59,8 @@ public class FriendshipResource {
         if (user == null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "User: " + login + " doesn't exists")).body(null);
         }
-        friendship.setUser1(userService.findOneByLogin(SecurityUtils.getCurrentUserLogin()));
-        friendship.setUser2(user);
+        friendship.setUser1(user);
+        friendship.setUser2(userService.findOneByLogin(SecurityUtils.getCurrentUserLogin()));
         Friendship result = friendshipService.save(friendship);
         return ResponseEntity.created(new URI("/api/friendships/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
