@@ -1,9 +1,13 @@
 <div ng-cloak>
     <div class="row">
-        <div class="col-md-12">
-            <h2>MoveApp lets you notice your daily movement in aesthetic and practical way.</h2>
-
-            <div ng-switch="vm.isAuthenticated()">
+        <div class="col-md-12"  ng-switch="vm.isAuthenticated()">
+            <h2 class="center-text main-text">Welcome in MoveApp!!</h2>
+            <p class="center-text p-text">MoveApp lets you notice your daily movement in aesthetic and practical way.</p>
+            <div class="center-text sign-in-button" ng-switch-when="false">
+                <button type="button" class="btn btn-warning" ng-click="vm.login()">Sign in</button>
+            </div>
+<hr>
+            <div>
                 <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
                     You are logged in as user "{{vm.account.login}}".
                 </div>

@@ -351,3 +351,24 @@ footer
     height: 36em;
     width: 100%;
 }
+
+.center-text{
+    text-align: center;
+}
+
+.main-text{
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.p-text{
+    margin-top: 50px;
+    margin-bottom: 16px;
+}
+
+.sign-in-button{
+    margin-top: 0px;
+    margin-bottom: 60px;
+}
+
+
