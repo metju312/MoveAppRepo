@@ -1,60 +1,54 @@
 <div>
-    <h2 data-translate="moveApp.friendship.home.title">Friendships</h2>
+    <h2>Friends</h2>
     <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="friendship.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="moveApp.friendship.home.createLabel">
-                        Create new Friendship
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
+
     <br/>
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="user1.id"><span data-translate="moveApp.friendship.user1">User 1</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="user2.id"><span data-translate="moveApp.friendship.user2">User 2</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
+                    <!--<th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="user1.id"><span>User 1</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="user2.id"><span>User 2</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <th><span>Login</span></th>
+                    <!--<th></th>-->
                 </tr>
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
-                <tr ng-repeat="friendship in vm.friendships track by friendship.id">
-                    <td><a ui-sref="friendship-detail({id:friendship.id})">{{friendship.id}}</a></td>
+                <!--<tr ng-repeat="friendship in vm.friendships track by friendship.id">-->
+                <tr ng-repeat="friend in vm.friends track by friend">
+                    <!--<td><a ui-sref="friendship-detail({id:friendship.id})">{{friendship.id}}</a></td>-->
+                    <!--<td>-->
+                        <!--{{friendship.user1.id}}-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--{{friendship.user2.id}}-->
+                    <!--</td>-->
                     <td>
-                        {{friendship.user1.id}}
+                        {{friend}}
                     </td>
-                    <td>
-                        {{friendship.user2.id}}
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="friendship-detail({id:friendship.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="friendship.edit({id:friendship.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="friendship.delete({id:friendship.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
-                            </button>
-                        </div>
-                    </td>
+                    <!--<td class="text-right">-->
+                        <!--<div class="btn-group flex-btn-group-container">-->
+                            <!--<button type="submit"-->
+                                    <!--ui-sref="friendship-detail({id:friendship.id})"-->
+                                    <!--class="btn btn-info btn-sm">-->
+                                <!--<span class="glyphicon glyphicon-eye-open"></span>-->
+                                <!--<span class="hidden-sm-down" data-translate="entity.action.view"></span>-->
+                            <!--</button>-->
+                            <!--<button type="submit"-->
+                                    <!--ui-sref="friendship.edit({id:friendship.id})"-->
+                                    <!--class="btn btn-primary btn-sm">-->
+                                <!--<span class="glyphicon glyphicon-pencil"></span>-->
+                                <!--<span class="hidden-sm-down" data-translate="entity.action.edit"></span>-->
+                            <!--</button>-->
+                            <!--<button type="submit"-->
+                                    <!--ui-sref="friendship.delete({id:friendship.id})"-->
+                                    <!--class="btn btn-danger btn-sm">-->
+                                <!--<span class="glyphicon glyphicon-remove-circle"></span>-->
+                                <!--<span class="hidden-sm-down" data-translate="entity.action.delete"></span>-->
+                            <!--</button>-->
+                        <!--</div>-->
+                    <!--</td>-->
                 </tr>
             </tbody>
         </table>

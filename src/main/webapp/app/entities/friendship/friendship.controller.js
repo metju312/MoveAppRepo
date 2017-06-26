@@ -5,9 +5,9 @@
         .module('moveApp')
         .controller('FriendshipController', FriendshipController);
 
-    FriendshipController.$inject = ['Friendship', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    FriendshipController.$inject = ['Friendship', 'ParseLinks', 'AlertService', 'paginationConstants', '$http'];
 
-    function FriendshipController(Friendship, ParseLinks, AlertService, paginationConstants) {
+    function FriendshipController(Friendship, ParseLinks, AlertService, paginationConstants, $http) {
 
         var vm = this;
 
@@ -25,6 +25,19 @@
         loadAll();
 
         function loadAll () {
+            $http({
+                method:'GET',
+                url:"api/friendships/logins"})
+                .then(function (response) {
+                    vm.friends = response.data;
+                }, function (reason) {
+                    $scope.error = reason;
+                });
+
+
+
+
+
             Friendship.query({
                 page: vm.page,
                 size: vm.itemsPerPage,
