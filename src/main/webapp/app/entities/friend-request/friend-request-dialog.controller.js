@@ -35,7 +35,9 @@
                     method:'POST',
                     url:"/api/friend-requests/" + vm.user.login})
                     .then(function (response) {
-
+                        $scope.$emit('moveApp:friendRequestUpdate', result);
+                        $uibModalInstance.close(result);
+                        vm.isSaving = false;
                     }, function (reason) {
                         $scope.error = reason;
                     });

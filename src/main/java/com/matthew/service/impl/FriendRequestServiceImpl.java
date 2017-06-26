@@ -80,19 +80,30 @@ public class FriendRequestServiceImpl implements FriendRequestService{
     }
 
     @Override
-    public FriendRequest findByUser1AndUser2(User user1, User user2) {
+    public FriendRequest findByUser1AndUser2(User user, User userSession) {
         log.debug("Request to findByUser1AndUser2");
         List<FriendRequest> friendRequests = friendRequestRepository.findAll();
         for (FriendRequest friendRequest : friendRequests) {
-            if(friendRequest.getUser1().getLogin().equals(user1.getLogin())){
-                if(friendRequest.getUser2().getLogin().equals(user2.getLogin())){
+            if(userSession.getLogin().equals(friendRequest.getUser1().getLogin())){ //na lewym miejscu
+                if(user.getLogin().equals(friendRequest.getUser2().getLogin())){
                     return friendRequest;
                 }
-            }else if (friendRequest.getUser1().getLogin().equals(user2.getLogin())){
-                if(friendRequest.getUser2().getLogin().equals(user1.getLogin())){
+            }else if(userSession.getLogin().equals(friendRequest.getUser2().getLogin())){ //na prawy miejscu
+                if(user.getLogin().equals(friendRequest.getUser1().getLogin())){
                     return friendRequest;
                 }
             }
+
+
+//            if(friendRequest.getUser1().getLogin().equals(user1.getLogin())){
+//                if(friendRequest.getUser2().getLogin().equals(user2.getLogin())){
+//                    return friendRequest;
+//                }
+//            }else if (friendRequest.getUser1().getLogin().equals(user2.getLogin())){
+//                if(friendRequest.getUser2().getLogin().equals(user1.getLogin())){
+//                    return friendRequest;
+//                }
+//            }
         }
         return null;
     }

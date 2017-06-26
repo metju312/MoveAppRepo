@@ -136,14 +136,22 @@ public class FriendRequestResource {
      *
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/friend-requests/{login}")
+    @DeleteMapping("/friend-requests/by-login/{login}")
     @Timed
-    public ResponseEntity<Void> deleteFriendRequest(@PathVariable String login) {
+    public ResponseEntity<Void> deleteFriendRequestByLogin(@PathVariable String login) {
         log.debug("REST request to delete FriendRequest with user1 login" + login);
-        User user1 = userService.findOneByLogin(login);
-        User user2 = userService.findOneByLogin(SecurityUtils.getCurrentUserLogin());
-        FriendRequest friendRequest = friendRequestService.findByUser1AndUser2(user1, user2);
+        User user = userService.findOneByLogin(login);
+        User userSession = userService.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        FriendRequest friendRequest = friendRequestService.findByUser1AndUser2(user, userSession);
         friendRequestService.delete(friendRequest.getId());
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, "")).build();
+    }
+
+    @DeleteMapping("/friend-requests/{id}")
+    @Timed
+    public ResponseEntity<Void> deleteFriendRequest(@PathVariable Long id) {
+        log.debug("REST request to delete FriendRequest by id " + id);
+        friendRequestService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, "")).build();
     }
 }
