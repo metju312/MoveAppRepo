@@ -4,6 +4,8 @@ import com.matthew.domain.Friendship;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * Service Interface for managing Friendship.
  */
@@ -39,4 +41,6 @@ public interface FriendshipService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<String> findAllByLogin(String sessionUserLogin);
 }

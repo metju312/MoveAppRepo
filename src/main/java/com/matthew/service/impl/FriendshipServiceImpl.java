@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Service Implementation for managing Friendship.
@@ -74,4 +77,34 @@ public class FriendshipServiceImpl implements FriendshipService{
         log.debug("Request to delete Friendship : {}", id);
         friendshipRepository.delete(id);
     }
+
+    @Override
+    public List<String> findAllByLogin(String sessionUserLogin) {
+        log.debug("Request to get all Friendships by login");
+        List<Friendship> friendships = friendshipRepository.findAll();
+        List<String> list = new ArrayList<>();
+        for (Friendship friendship : friendships){
+            if(friendship.getUser2().getLogin().equals(sessionUserLogin)){
+                if(!loginAlreadyInList(friendship.getUser1().getLogin(), list)){
+                    list.add(friendship.getUser1().getLogin());
+                }
+            }else if(friendship.getUser1().getLogin().equals(sessionUserLogin)){
+                if(!loginAlreadyInList(friendship.getUser2().getLogin(), list)){
+                    list.add(friendship.getUser2().getLogin());
+                }
+            }
+        }
+        return list;
+    }
+
+    private boolean loginAlreadyInList(String checkLogin, List<String> list) {
+        for (String login : list) {
+            if (login.equals(checkLogin)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

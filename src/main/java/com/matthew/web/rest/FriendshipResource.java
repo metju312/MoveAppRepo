@@ -104,6 +104,15 @@ public class FriendshipResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/friendships/logins")
+    @Timed
+    public ResponseEntity<List<String>> getAllFriendshipsLogins() {
+        log.debug("REST request to get a page of Friendships logins");
+        User sessionUser = userService.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        List<String> list = friendshipService.findAllByLogin(sessionUser.getLogin());
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
     /**
      * GET  /friendships/:id : get the "id" friendship.
      *
