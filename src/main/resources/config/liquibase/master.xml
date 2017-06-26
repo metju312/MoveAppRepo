@@ -17,7 +17,7 @@
     <include file="classpath:config/liquibase/changelog/20170623142515_added_entity_constraints_Friendship.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170623142516_added_entity_constraints_FriendRequest.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
-    <include file="classpath:config/liquibase/changelog/20170624214846_changelog.xml.xml"/>
+    <include file="classpath:config/liquibase/changelog/20170624214846_changelog.xml"/>
     <include file="classpath:config/liquibase/changelog/20170624215151_changelog.xml"/>
     <include file="classpath:config/liquibase/changelog/20170626005245_changelog.xml"/>
     <include file="classpath:config/liquibase/changelog/20170626005743_changelog.xml"/>
