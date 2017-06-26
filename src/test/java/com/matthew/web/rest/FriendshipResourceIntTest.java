@@ -5,6 +5,7 @@ import com.matthew.MoveApp;
 import com.matthew.domain.Friendship;
 import com.matthew.repository.FriendshipRepository;
 import com.matthew.service.FriendshipService;
+import com.matthew.service.UserService;
 import com.matthew.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -59,11 +60,13 @@ public class FriendshipResourceIntTest {
     private MockMvc restFriendshipMockMvc;
 
     private Friendship friendship;
+    @Autowired
+    private UserService userService;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        FriendshipResource friendshipResource = new FriendshipResource(friendshipService);
+        FriendshipResource friendshipResource = new FriendshipResource(userService, friendshipService);
         this.restFriendshipMockMvc = MockMvcBuilders.standaloneSetup(friendshipResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

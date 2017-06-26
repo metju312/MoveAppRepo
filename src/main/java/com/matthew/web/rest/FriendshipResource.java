@@ -2,7 +2,10 @@ package com.matthew.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.matthew.domain.Friendship;
+import com.matthew.domain.User;
+import com.matthew.security.SecurityUtils;
 import com.matthew.service.FriendshipService;
+import com.matthew.service.UserService;
 import com.matthew.web.rest.util.HeaderUtil;
 import com.matthew.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -33,26 +36,31 @@ public class FriendshipResource {
 
     private static final String ENTITY_NAME = "friendship";
 
+    private final UserService userService;
     private final FriendshipService friendshipService;
 
-    public FriendshipResource(FriendshipService friendshipService) {
+    public FriendshipResource(UserService userService, FriendshipService friendshipService) {
+        this.userService = userService;
         this.friendshipService = friendshipService;
     }
 
     /**
      * POST  /friendships : Create a new friendship.
      *
-     * @param friendship the friendship to create
      * @return the ResponseEntity with status 201 (Created) and with body the new friendship, or with status 400 (Bad Request) if the friendship has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/friendships")
+    @PostMapping("/friendships/{login}")
     @Timed
-    public ResponseEntity<Friendship> createFriendship(@RequestBody Friendship friendship) throws URISyntaxException {
-        log.debug("REST request to save Friendship : {}", friendship);
-        if (friendship.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new friendship cannot already have an ID")).body(null);
+    public ResponseEntity<Friendship> createFriendship(@PathVariable String login) throws URISyntaxException {
+        Friendship friendship = new Friendship();
+        log.debug("REST request to save Friendship with user with login: " + login);
+        User user = userService.findOneByLogin(login);
+        if (user == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "User: " + login + " doesn't exists")).body(null);
         }
+        friendship.setUser1(userService.findOneByLogin(SecurityUtils.getCurrentUserLogin()));
+        friendship.setUser2(user);
         Friendship result = friendshipService.save(friendship);
         return ResponseEntity.created(new URI("/api/friendships/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -73,7 +81,7 @@ public class FriendshipResource {
     public ResponseEntity<Friendship> updateFriendship(@RequestBody Friendship friendship) throws URISyntaxException {
         log.debug("REST request to update Friendship : {}", friendship);
         if (friendship.getId() == null) {
-            return createFriendship(friendship);
+            return createFriendship("");
         }
         Friendship result = friendshipService.save(friendship);
         return ResponseEntity.ok()
