@@ -3,8 +3,8 @@
         "friendRequest" : {
             "home": {
                 "title": "Friend Requests",
-                "createLabel": "Create a new Friend Request",
-                "createOrEditLabel": "Create or edit a Friend Request"
+                "createLabel": "Send a new Friend Request",
+                "createOrEditLabel": "Send new a Friend Request"
             },
             "created": "A new Friend Request is created",
             "updated": "A Friend Request is updated",

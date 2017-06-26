@@ -5,9 +5,9 @@
         .module('moveApp')
         .controller('FriendRequestDialogController', FriendRequestDialogController);
 
-    FriendRequestDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'FriendRequest', 'User'];
+    FriendRequestDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'FriendRequest', 'User', '$http'];
 
-    function FriendRequestDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, FriendRequest, User) {
+    function FriendRequestDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, FriendRequest, User, $http) {
         var vm = this;
 
         vm.friendRequest = entity;
@@ -28,7 +28,17 @@
             if (vm.friendRequest.id !== null) {
                 FriendRequest.update(vm.friendRequest, onSaveSuccess, onSaveError);
             } else {
-                FriendRequest.save(vm.friendRequest, onSaveSuccess, onSaveError);
+                // vm.friendRequest.user2.login = vm.user.login;
+                // FriendRequest.save(vm.friendRequest, onSaveSuccess, onSaveError);
+
+                $http({
+                    method:'POST',
+                    url:"/api/friend-requests/" + vm.user.login})
+                    .then(function (response) {
+
+                    }, function (reason) {
+                        $scope.error = reason;
+                    });
             }
         }
 

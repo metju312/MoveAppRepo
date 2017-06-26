@@ -8,23 +8,23 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.friendRequest.id">
-            <label for="id" data-translate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.friendRequest.id" readonly />
-        </div>
+        <div class="form-group">
+            <label class="control-label">Login</label>
+            <input type="text" class="form-control" name="login"
+                   ng-model="vm.user.login" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[_'.@A-Za-z0-9-]*$/">
 
-        <div class="form-group">
-            <label data-translate="moveApp.friendRequest.user1" for="field_user1">User 1</label>
-            <select class="form-control" id="field_user1" name="user1" ng-model="vm.friendRequest.user1" ng-options="user as user.id for user in vm.users track by user.id">
-                <option value=""></option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label data-translate="moveApp.friendRequest.user2" for="field_user2">User 2</label>
-            <select class="form-control" id="field_user2" name="user2" ng-model="vm.friendRequest.user2" ng-options="user as user.id for user in vm.users track by user.id">
-                <option value=""></option>
-            </select>
+            <div ng-show="editForm.login.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.login.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+
+                <p class="help-block"
+                   ng-show="editForm.login.$error.maxlength" data-translate="entity.validation.maxlength"
+                   translate-value-max="50">
+                    This field cannot be longer than 50 characters.
+                </p>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

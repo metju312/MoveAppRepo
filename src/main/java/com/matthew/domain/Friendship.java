@@ -20,11 +20,11 @@ public class Friendship implements Serializable {
     private Long id;
 
     @OneToOne
-    @JoinColumn(unique = true)
+    @JoinColumn
     private User user1;
 
     @OneToOne
-    @JoinColumn(unique = true)
+    @JoinColumn
     private User user2;
 
     public Long getId() {
