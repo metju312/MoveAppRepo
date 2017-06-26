@@ -44,4 +44,6 @@ public interface FriendRequestService {
     void delete(Long id);
 
     FriendRequest findByUser1AndUser2(User user1, User user2);
+
+    List<String> findAllToSessionUserLogin(String login);
 }

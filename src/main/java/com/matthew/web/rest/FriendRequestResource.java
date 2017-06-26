@@ -122,6 +122,15 @@ public class FriendRequestResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(friendRequest));
     }
 
+    @GetMapping("/friend-requests/to-me")
+    @Timed
+    public ResponseEntity<List<String>> getFriendRequestToMe() {
+        log.debug("REST request to get FriendRequest to me");
+        User sessionUser = userService.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        List<String> list = friendRequestService.findAllToSessionUserLogin(sessionUser.getLogin());
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
     /**
      * DELETE  /friend-requests/:id : delete the "id" friendRequest.
      *

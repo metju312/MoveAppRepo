@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -94,5 +95,18 @@ public class FriendRequestServiceImpl implements FriendRequestService{
             }
         }
         return null;
+    }
+
+    @Override
+    public List<String> findAllToSessionUserLogin(String login) {
+        log.debug("Request to get all Friendships by login");
+        List<FriendRequest> friendRequests = friendRequestRepository.findAll();
+        List<String> list = new ArrayList<>();
+        for (FriendRequest friendRequest : friendRequests) {
+            if (friendRequest.getUser1().getLogin().equals(login)) {
+                list.add(friendRequest.getUser2().getLogin());
+            }
+        }
+        return list;
     }
 }
