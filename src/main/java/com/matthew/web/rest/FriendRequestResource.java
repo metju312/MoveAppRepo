@@ -103,7 +103,8 @@ public class FriendRequestResource {
     @Timed
     public ResponseEntity<List<FriendRequest>> getAllFriendRequests(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of FriendRequests");
-        Page<FriendRequest> page = friendRequestService.findAll(pageable);
+        User userSession = userService.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        Page<FriendRequest> page = friendRequestService.findAllByUser2(pageable, userSession);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/friend-requests");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

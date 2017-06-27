@@ -120,4 +120,22 @@ public class FriendRequestServiceImpl implements FriendRequestService{
         }
         return list;
     }
+
+    @Override
+    public List<FriendRequest> findAllByUser2List(User userSession) {
+        List<FriendRequest> list = new ArrayList<>();
+        List<FriendRequest> friendRequests = friendRequestRepository.findAll();
+        for (FriendRequest friendRequest : friendRequests) {
+            if(friendRequest.getUser2().getLogin().equals(userSession.getLogin())){
+                list.add(friendRequest);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public Page<FriendRequest> findAllByUser2(Pageable pageable, User user2) {
+        log.debug("Request to get all FriendRequests");
+        return friendRequestRepository.findByUser2(pageable, user2);
+    }
 }

@@ -46,4 +46,9 @@ public interface FriendRequestService {
     FriendRequest findByUser1AndUser2(User user1, User user2);
 
     List<String> findAllToSessionUserLogin(String login);
+
+
+    List<FriendRequest> findAllByUser2List(User userSession);
+
+    Page<FriendRequest> findAllByUser2(Pageable pageable, User userSession);
 }
