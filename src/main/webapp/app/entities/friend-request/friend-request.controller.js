@@ -5,9 +5,9 @@
         .module('moveApp')
         .controller('FriendRequestController', FriendRequestController);
 
-    FriendRequestController.$inject = ['FriendRequest', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    FriendRequestController.$inject = ['FriendRequest', 'ParseLinks', 'AlertService', 'paginationConstants', '$http'];
 
-    function FriendRequestController(FriendRequest, ParseLinks, AlertService, paginationConstants) {
+    function FriendRequestController(FriendRequest, ParseLinks, AlertService, paginationConstants, $http) {
 
         var vm = this;
 
@@ -21,10 +21,53 @@
         vm.predicate = 'id';
         vm.reset = reset;
         vm.reverse = true;
+        vm.candidatesForFriends = {};
 
         loadAll();
 
+        vm.agree = agree;
+        vm.deny = deny;
+        function agree(candidateForFriend) {
+            $http({
+                method:'POST',//add friendship
+                url:"/api/friendships/" + candidateForFriend})
+                .then(function (response) {
+                    $http({
+                        method:'DELETE',//delete friendrequest
+                        url:"/api//friend-requests/by-login/" + candidateForFriend})
+                        .then(function (response) {
+
+                        }, function (reason) {
+                            $scope.error = reason;
+                        });
+                }, function (reason) {
+                    $scope.error = reason;
+                });
+        }
+
+        function deny(candidateForFriend) {
+            $http({
+                method:'DELETE',//delete friendrequest
+                url:"/api//friend-requests/by-login/" + candidateForFriend})
+                .then(function (response) {
+
+                }, function (reason) {
+                    $scope.error = reason;
+                });
+        }
+
         function loadAll () {
+            $http({
+                method:'GET',
+                url:"/api/friend-requests/to-me/"})
+                .then(function (response) {
+                    vm.candidatesForFriends = response.data;
+                }, function (reason) {
+                    $scope.error = reason;
+                });
+
+
+
             FriendRequest.query({
                 page: vm.page,
                 size: vm.itemsPerPage,

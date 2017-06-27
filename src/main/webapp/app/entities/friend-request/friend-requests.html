@@ -14,39 +14,40 @@
         </div>
     </div>
     <br/>
+    <h5>You ask for friendship</h5>
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="user1.id"><span data-translate="moveApp.friendRequest.user1">User 1</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="user2.id"><span data-translate="moveApp.friendRequest.user2">User 2</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <th jh-sort-by="user1.login"><span>Login</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="user2.id"><span data-translate="moveApp.friendRequest.user2">User 2</span> <span class="glyphicon glyphicon-sort"></span></th>-->
                     <th></th>
                 </tr>
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="friendRequest in vm.friendRequests track by friendRequest.id">
-                    <td><a ui-sref="friend-request-detail({id:friendRequest.id})">{{friendRequest.id}}</a></td>
+                    <!--<td><a ui-sref="friend-request-detail({id:friendRequest.id})">{{friendRequest.id}}</a></td>-->
                     <td>
-                        {{friendRequest.user1.id}}
+                        {{friendRequest.user1.login}}
                     </td>
-                    <td>
-                        {{friendRequest.user2.id}}
-                    </td>
+                    <!--<td>-->
+                        <!--{{friendRequest.user2.id}}-->
+                    <!--</td>-->
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="friend-request-detail({id:friendRequest.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="friend-request.edit({id:friendRequest.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
-                            </button>
+                            <!--<button type="submit"-->
+                                    <!--ui-sref="friend-request-detail({id:friendRequest.id})"-->
+                                    <!--class="btn btn-info btn-sm">-->
+                                <!--<span class="glyphicon glyphicon-eye-open"></span>-->
+                                <!--<span class="hidden-sm-down" data-translate="entity.action.view"></span>-->
+                            <!--</button>-->
+                            <!--<button type="submit"-->
+                                    <!--ui-sref="friend-request.edit({id:friendRequest.id})"-->
+                                    <!--class="btn btn-primary btn-sm">-->
+                                <!--<span class="glyphicon glyphicon-pencil"></span>-->
+                                <!--<span class="hidden-sm-down" data-translate="entity.action.edit"></span>-->
+                            <!--</button>-->
                             <button type="submit"
                                     ui-sref="friend-request.delete({id:friendRequest.id})"
                                     class="btn btn-danger btn-sm">
@@ -56,6 +57,45 @@
                         </div>
                     </td>
                 </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <h5>Asking you for friendship</h5>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+            <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                <th><span>Login</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+            <tr ng-repeat="candidateForFriend in vm.candidatesForFriends">
+                <!--<td><a ui-sref="friend-request-detail({id:friendRequest.id})">{{friendRequest.id}}</a></td>-->
+                <td>
+                    {{candidateForFriend}}
+                </td>
+                <!--<td>-->
+                <!--{{friendRequest.user2.id}}-->
+                <!--</td>-->
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                        ng-click="vm.agree(candidateForFriend)"
+                        class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon glyphicon-ok"></span>
+                        <span class="hidden-sm-down"> Agree</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="vm.deny(candidateForFriend)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <span class="hidden-sm-down">Deny</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
