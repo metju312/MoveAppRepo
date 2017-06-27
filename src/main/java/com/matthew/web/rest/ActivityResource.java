@@ -2,8 +2,10 @@ package com.matthew.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.matthew.domain.Activity;
+import com.matthew.domain.Node;
 import com.matthew.security.SecurityUtils;
 import com.matthew.service.ActivityService;
+import com.matthew.service.NodeService;
 import com.matthew.service.UserService;
 import com.matthew.web.rest.util.HeaderUtil;
 import com.matthew.web.rest.util.PaginationUtil;
@@ -40,9 +42,12 @@ public class ActivityResource {
 
     private final UserService userService;
 
-    public ActivityResource(ActivityService activityService, UserService userService) {
+    private final NodeService nodeService;
+
+    public ActivityResource(ActivityService activityService, UserService userService, NodeService nodeService) {
         this.activityService = activityService;
         this.userService = userService;
+        this.nodeService = nodeService;
     }
 
     /**
@@ -60,7 +65,12 @@ public class ActivityResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new activity cannot already have an ID")).body(null);
         }
         activity.setUser(userService.findOneByLogin(SecurityUtils.getCurrentUserLogin()));
+
         Activity result = activityService.save(activity);
+        for (Node node : activity.getNodes()) {
+            node.setActivity(result);
+            nodeService.save(node);
+        }
         return ResponseEntity.created(new URI("/api/activities/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -127,6 +137,11 @@ public class ActivityResource {
     @Timed
     public ResponseEntity<Void> deleteActivity(@PathVariable Long id) {
         log.debug("REST request to delete Activity : {}", id);
+        //najpierw usunąć nody
+        Activity activity = activityService.findOne(id);
+        for (Node node : activity.getNodes()) {
+            nodeService.delete(node.getId());
+        }
         activityService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
